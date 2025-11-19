@@ -375,31 +375,31 @@
       flex: 0 0 calc(50% - 0.75rem);
     }
     
-    .carousel-btn {
-      position: absolute;
-      bottom: 10px;
-      transform: translateY(0);
-      background: var(--primary);
-      border: 2px solid var(--primary-light);
-      color: white;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 10;
-      box-shadow: 0 5px 15px rgba(106, 64, 127, 0.3);
-    }
-    
-    .carousel-btn:hover {
-      background: var(--primary-dark);
-      color: white;
-      transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(106, 64, 127, 0.4);
-    }
+.carousel-btn {
+  position: absolute;
+  bottom: 10px;
+  transform: translateY(0);
+  background: var(--primary);
+  border: 2px solid var(--primary-light);
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  /* SIN box-shadow */
+}
+
+.carousel-btn:hover {
+  background: var(--primary-dark);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: none; /* SIN sombra en hover */
+}
     
     .carousel-prev {
       left: calc(50% - 60px);
@@ -578,32 +578,32 @@
       min-width: calc(50% - 0.75rem);
       flex: 0 0 calc(50% - 0.75rem);
     }
-    
-    .tutorial-btn {
-      position: absolute;
-      bottom: 10px;
-      transform: translateY(0);
-      background: var(--primary);
-      border: 2px solid var(--primary-light);
-      color: white;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 10;
-      box-shadow: 0 5px 15px rgba(106, 64, 127, 0.3);
-    }
-    
-    .tutorial-btn:hover {
-      background: var(--primary-dark);
-      color: white;
-      transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(106, 64, 127, 0.4);
-    }
+
+.tutorial-btn {
+  position: absolute;
+  bottom: 10px;
+  transform: translateY(0);
+  background: var(--primary);
+  border: 2px solid var(--primary-light);
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  /* SIN box-shadow */
+}
+
+.tutorial-btn:hover {
+  background: var(--primary-dark);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: none; /* SIN sombra en hover */
+}
     
     .tutorial-prev {
       left: calc(50% - 60px);
@@ -1937,32 +1937,39 @@
     };
 
     // Datos de los tutoriales - CON IMÁGENES ÚNICAS
-    const tutorialsData = [
-      {
-        title: "Introducción a la mezcla de audio",
-        level: "Principiante",
-        duration: "15 min",
-        image: "https://images.unsplash.com/photo-1571974599782-87624638275f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-      },
-      {
-        title: "Creación de ritmos complejos",
-        level: "Intermedio",
-        duration: "22 min",
-        image: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
-      },
-      {
-        title: "Masterización profesional",
-        level: "Avanzado",
-        duration: "30 min",
-        image: "https://images.unsplash.com/photo-1614680376593-902f74c0fb5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-      },
-      {
-        title: "Síntesis de sonidos desde cero",
-        level: "Intermedio",
-        duration: "25 min",
-        image: "https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-      }
-    ];
+const tutorialsData = [
+  {
+    title: "Introducción a la mezcla de audio",
+    level: "Principiante",
+    duration: "15 min",
+    image: "imagenes/1.png"
+  },
+  {
+    title: "Creación de ritmos complejos",
+    level: "Intermedio",
+    duration: "22 min",
+    image: "imagenes/2.png",
+    position: "center top"
+  },
+  {
+    title: "Masterización profesional",
+    level: "Avanzado",
+    duration: "30 min",
+    image: "imagenes/6.png"
+  },
+  {
+    title: "Síntesis de sonidos desde cero",
+    level: "Intermedio",
+    duration: "25 min",
+    image: "imagenes/4.png"
+  },
+  {
+    title: "Técnicas de sampling avanzado",
+    level: "Avanzado",
+    duration: "28 min",
+    image: "imagenes/5.png"
+  },
+];
 
     document.addEventListener('DOMContentLoaded', function() {
       // Menú móvil
