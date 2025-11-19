@@ -1,0 +1,2374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
+  <meta name="description" content="Mixfy Blog - Consejos, tutoriales y noticias sobre producción musical">
+  <title>Mixfy Blog - Crea tu música</title>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    :root {
+      --primary: #6a407f;
+      --primary-light: #8a5da8;
+      --primary-dark: #4d2b5c;
+      --secondary: #3d2447;
+      --accent: #d3bfdc;
+      --text: #333;
+      --text-light: #4A5568;
+      --background: #f4f1f7;
+      --surface: #FFFFFF;
+      --surface-light: #F1F5F9;
+      --gradient: linear-gradient(135deg, #6a407f 0%, #3d2447 100%);
+      --gradient-secondary: linear-gradient(135deg, #8a5da8 0%, #4d2b5c 100%);
+      --gradient-surface: linear-gradient(135deg, #FFFFFF 0%, #f4f1f7 100%);
+      
+      /* Tamaños base responsivos */
+      --base-font-size: clamp(14px, 1.5vw, 16px);
+      --h1-size: clamp(2rem, 4vw, 3.5rem);
+      --h2-size: clamp(1.5rem, 2.5vw, 2rem);
+      --h3-size: clamp(1.1rem, 2vw, 1.5rem);
+      --section-padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 2vw, 1.5rem);
+      --container-max-width: min(1200px, 95vw);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+    
+    html {
+      font-size: var(--base-font-size);
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Chakra Petch', sans-serif;
+      background: #f0e9f5;
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    /* Layout principal que ocupa toda la pantalla */
+    .main-container {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Navegación moderna minimalista */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(106, 64, 127, 0.1);
+    }
+    
+    nav.scrolled {
+      padding: 0.6rem 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    
+    .nav-container {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      color: var(--text);
+      font-size: clamp(1.3rem, 3vw, 1.6rem);
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .logo i {
+      margin-right: 0.5rem;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+      transition: all 0.5s ease;
+    }
+    
+    .nav-links li {
+      margin-left: clamp(0.8rem, 1.5vw, 1.5rem);
+    }
+    
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -0.3rem;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    
+    /* Header del blog que ocupa toda la pantalla */
+    .blog-header {
+      background: linear-gradient(135deg, rgba(106, 64, 127, 0.9) 0%, rgba(61, 36, 71, 0.9) 100%), 
+                  url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+      padding: var(--section-padding);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      margin-top: 0;
+      width: 100%;
+    }
+    
+    .header-content {
+      max-width: 400px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .blog-header h1 {
+      font-size: var(--h1-size);
+      margin: 0;
+      line-height: 1.1;
+      padding: 0 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      animation: fadeInUp 1s ease forwards;
+    }
+    
+    .blog-header p {
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      margin: 1.5rem 0 2.5rem;
+      max-width: min(700px, 90vw);
+      padding: 0 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      animation: fadeInUp 1s ease forwards 0.3s;
+      opacity: 0;
+    }
+    
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease forwards 0.1s;
+      opacity: 0;
+      backdrop-filter: blur(10px);
+    }
+    
+    .header-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    
+    .btn {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    
+    .btn-outline {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      color: white;
+      font-size: 1.3rem;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Secciones que ocupan todo el ancho */
+    section {
+      padding: var(--section-padding);
+      width: 100%;
+      margin: 0;
+    }
+    
+    .section-full {
+      width: 100%;
+      padding: var(--section-padding);
+    }
+    
+    h2 {
+      font-size: var(--h2-size);
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+      color: var(--text);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -0.6rem;
+      left: 0;
+      width: 3rem;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+    
+    h3 {
+      font-size: var(--h3-size);
+      color: var(--text);
+      font-weight: 600;
+    }
+    
+    .section-subtitle {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      max-width: 600px;
+    }
+    
+    /* Carrusel de artículos */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 2rem auto;
+      overflow: hidden;
+      padding-bottom: 70px;
+    }
+    
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+    
+    .carousel-item {
+      min-width: calc(50% - 0.75rem);
+      flex: 0 0 calc(50% - 0.75rem);
+    }
+    
+    .carousel-btn {
+      position: absolute;
+      bottom: 10px;
+      transform: translateY(0);
+      background: var(--primary);
+      border: 2px solid var(--primary-light);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      box-shadow: 0 5px 15px rgba(106, 64, 127, 0.3);
+    }
+    
+    .carousel-btn:hover {
+      background: var(--primary-dark);
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(106, 64, 127, 0.4);
+    }
+    
+    .carousel-prev {
+      left: calc(50% - 60px);
+    }
+    
+    .carousel-next {
+      right: calc(50% - 60px);
+    }
+    
+    /* Grid de artículos moderno que ocupa todo el ancho */
+    .blog-article {
+      background: var(--surface);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      position: relative;
+      border: 1px solid rgba(106, 64, 127, 0.1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    
+    .blog-article:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(106, 64, 127, 0.15);
+    }
+    
+    .article-image {
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .blog-article:hover .article-image img {
+      transform: scale(1.1);
+    }
+    
+    .article-category {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      background: var(--gradient);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .article-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .article-date {
+      color: var(--primary);
+      font-size: 0.8rem;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .article-title {
+      margin: 0 0 0.8rem;
+      font-size: 1.2rem;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.3;
+      flex: 1;
+    }
+    
+    .article-excerpt {
+      color: var(--text-light);
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(106, 64, 127, 0.1);
+    }
+    
+    .article-author {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+    }
+    
+    .author-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    
+    .read-time {
+      color: var(--text-light);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    
+    /* Secciones específicas con diseño moderno */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      width: 100%;
+    }
+    
+    .section-header h2 {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+    
+    .section-header p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--text-light);
+    }
+    
+    /* Tutoriales Section */
+    .tutorials-section {
+      background: #f9f7fb;
+      border-radius: 0;
+      padding: 4rem 0;
+      margin: 0;
+      width: 100%;
+    }
+    
+    .tutorials-carousel {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding-bottom: 70px;
+    }
+    
+    .tutorials-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+    
+    .tutorial-item {
+      min-width: calc(50% - 0.75rem);
+      flex: 0 0 calc(50% - 0.75rem);
+    }
+    
+    .tutorial-btn {
+      position: absolute;
+      bottom: 10px;
+      transform: translateY(0);
+      background: var(--primary);
+      border: 2px solid var(--primary-light);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      box-shadow: 0 5px 15px rgba(106, 64, 127, 0.3);
+    }
+    
+    .tutorial-btn:hover {
+      background: var(--primary-dark);
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(106, 64, 127, 0.4);
+    }
+    
+    .tutorial-prev {
+      left: calc(50% - 60px);
+    }
+    
+    .tutorial-next {
+      right: calc(50% - 60px);
+    }
+    
+    .tutorial-card {
+      background: var(--surface);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(106, 64, 127, 0.1);
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    
+    .tutorial-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(106, 64, 127, 0.15);
+    }
+    
+    .tutorial-video {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+    }
+    
+    .tutorial-video img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .tutorial-card:hover .tutorial-video img {
+      transform: scale(1.1);
+    }
+    
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .tutorial-card:hover .play-icon {
+      background: var(--primary);
+      color: white;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .tutorial-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .tutorial-level {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--primary-dark);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      border: 1px solid var(--primary-light);
+    }
+    
+    .tutorial-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.3;
+      flex: 1;
+    }
+    
+    .tutorial-duration {
+      color: var(--text-light);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+    
+    /* Tendencias Section */
+    .trends-section {
+      padding: 4rem 0;
+      margin: 0;
+      width: 100%;
+    }
+    
+    .trends-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .trend-card {
+      background: var(--surface);
+      border-radius: 15px;
+      padding: 2.5rem 1.5rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(106, 64, 127, 0.1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .trend-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .trend-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(106, 64, 127, 0.15);
+    }
+    
+    .trend-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .trend-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      background: var(--gradient);
+      color: white;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(106, 64, 127, 0.2);
+    }
+    
+    .trend-card:hover .trend-icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+    
+    .trend-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--text);
+    }
+    
+    .trend-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+    
+    .trend-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+    
+    .trend-stat {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    /* Sección de Acción - REEMPLAZA la sección de Newsletter */
+    .action-section {
+      background: var(--gradient);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      border-radius: 0;
+      margin: 0;
+      width: 100%;
+    }
+    
+    .action-section h2 {
+      color: white;
+      margin-bottom: 0.8rem;
+    }
+    
+    .action-section h2::after {
+      background: white;
+    }
+    
+    .action-section p {
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .action-btn {
+      padding: 1rem 2rem;
+      background: white;
+      color: var(--primary);
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .action-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    .action-btn.secondary {
+      background: white;
+      color: var(--primary);
+    }
+    
+    .action-btn.secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    /* Popups para Suscripción y Comunidad */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+    
+    .popup-content {
+      background: white;
+      max-width: 500px;
+      margin: 2rem auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      position: relative;
+      animation: popupFadeIn 0.3s ease;
+    }
+    
+    @keyframes popupFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .popup-header {
+      background: var(--gradient);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .popup-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .popup-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .popup-title {
+      font-size: 1.5rem;
+      margin: 0;
+      font-weight: 700;
+      padding-right: 40px; /* Espacio para la X */
+    }
+    
+    .popup-body {
+      padding: 2rem;
+    }
+    
+    .popup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .form-label {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid var(--surface-light);
+      border-radius: 8px;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+    
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(138, 93, 168, 0.2);
+    }
+    
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .form-section {
+      margin-top: 1rem;
+      padding: 1.5rem;
+      background: var(--surface-light);
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .checkbox input {
+      width: auto;
+    }
+    
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .form-btn {
+      flex: 1;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Chakra Petch', sans-serif;
+    }
+    
+    .form-btn.primary {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 4px 15px rgba(106, 64, 127, 0.3);
+    }
+    
+    .form-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(106, 64, 127, 0.4);
+    }
+    
+    .form-btn.secondary {
+      background: var(--surface-light);
+      color: var(--text);
+      border: 2px solid var(--surface-light);
+    }
+    
+    .form-btn.secondary:hover {
+      background: var(--surface);
+      border-color: var(--primary-light);
+    }
+    
+    .popup-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--surface-light);
+      color: var(--text);
+      border: 1px solid rgba(106, 64, 127, 0.2);
+      display: none;
+    }
+    
+    .popup-message.success {
+      background: rgba(76, 175, 80, 0.1);
+      border-color: rgba(76, 175, 80, 0.3);
+      color: #2e7d32;
+    }
+    
+    .popup-message.error {
+      background: rgba(244, 67, 54, 0.1);
+      border-color: rgba(244, 67, 54, 0.3);
+      color: #c62828;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    /* Popup de artículo */
+    .article-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+    
+    .article-popup-content {
+      background: white;
+      max-width: 700px;
+      margin: 2rem auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    
+    .article-popup-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: rgba(0,0,0,0.1);
+      border: none;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .article-popup-close:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .popup-image {
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .popup-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-popup-body {
+      padding: 2rem;
+    }
+    
+    .popup-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(106, 64, 127, 0.1);
+    }
+    
+    .popup-category {
+      background: var(--gradient);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .popup-date {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .popup-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+      line-height: 1.2;
+      padding-right: 40px; /* Espacio para la X */
+    }
+    
+    .popup-text {
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .popup-text p {
+      margin-bottom: 1.2rem;
+    }
+    
+    .popup-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(106, 64, 127, 0.1);
+    }
+    
+    /* Footer moderno */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--surface);
+      color: var(--text);
+      position: relative;
+      border-top: 1px solid rgba(106, 64, 127, 0.1);
+      width: 100%;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient);
+    }
+    
+    .footer-content {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: 1.5rem;
+      text-align: left;
+    }
+    
+    .footer-column h3 {
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+    
+    .footer-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+      position: relative;
+      padding-left: 0;
+    }
+    
+    .footer-links a::before {
+      content: '▸';
+      position: absolute;
+      left: -1rem;
+      opacity: 0;
+      transition: all 0.3s ease;
+      color: var(--primary);
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 1rem;
+    }
+    
+    .footer-links a:hover::before {
+      opacity: 1;
+      left: 0;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    
+    .social-icons a {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-light);
+    }
+    
+    .social-icons a:hover {
+      color: white;
+      transform: translateY(-3px);
+      background: var(--gradient);
+      box-shadow: 0 5px 15px rgba(106, 64, 127, 0.3);
+    }
+    
+    .copyright {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    
+    /* Media Queries para dispositivos específicos */
+    @media (max-width: 768px) {
+      .carousel-item,
+      .tutorial-item {
+        min-width: 100%;
+        flex: 0 0 100%;
+      }
+      
+      .carousel-btn,
+      .tutorial-btn {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .carousel-prev,
+      .tutorial-prev {
+        left: calc(50% - 50px);
+      }
+      
+      .carousel-next,
+      .tutorial-next {
+        right: calc(50% - 50px);
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .action-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+      .form-actions {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      :root {
+        --base-font-size: 14px;
+        --h1-size: 1.8rem;
+        --h2-size: 1.4rem;
+        --section-padding: 1.5rem 1rem;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 4rem;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 4rem);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 1.5rem;
+        transition: all 0.5s ease;
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .nav-links li {
+        margin: 0.6rem 0;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .trends-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .header-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+      .popup-content {
+        margin: 1rem auto;
+        max-width: 95%;
+      }
+      
+      .popup-body {
+        padding: 1.5rem 1rem;
+      }
+      
+      .popup-title {
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (min-width: 641px) and (max-width: 1024px) {
+      :root {
+        --base-font-size: 15px;
+        --h1-size: 2.5rem;
+        --section-padding: 3rem 1.5rem;
+      }
+      
+      .nav-links li {
+        margin-left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Navegación -->
+    <nav id="navbar">
+      <div class="nav-container">
+        <a href="mixfy.html" class="logo"><i class="fas fa-music"></i> Mixfy</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="mixfy.html">Inicio</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Encabezado del blog que ocupa toda la pantalla -->
+    <section class="blog-header">
+      <div class="header-content">
+        <div class="header-badge">
+          <i class="fas fa-wave-square"></i>
+          <span>LO ULTIMO EN MUSICA Y PRODUCCION</span>
+          <i class="fas fa-wave-square"></i>
+        </div>
+        <h1 class="animate__animated animate__fadeIn">Mixphere</h1>
+        <p class="animate__animated animate__fadeIn">Explora el universo de la producción musical con tutoriales, tendencias y consejos exclusivos</p>
+       <!-- <div class="header-buttons">
+            <button class="btn btn-primary" id="openSubscriptionPopup">
+            <i class="fas fa-envelope"></i> Suscribirse al Blog
+          </button>
+          <button class="btn btn-outline" id="openCommunityPopup">
+            <i class="fas fa-users"></i> Unirse a la Comunidad
+          </button>
+        </div> -->
+      </div>
+      <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- Artículos del blog con carrusel -->
+    <section class="section-full">
+      <div class="section-header">
+        <h2>Últimos Artículos</h2>
+        <p>Descubre los contenidos más recientes sobre producción musical</p>
+      </div>
+      
+      <div class="carousel-container">
+        <div class="carousel-track" id="articlesCarousel">
+          <!-- Artículos se cargan dinámicamente -->
+        </div>
+        
+        <button class="carousel-btn carousel-prev" id="articlesPrev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-btn carousel-next" id="articlesNext">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sección de Tutoriales con carrusel -->
+    <section class="tutorials-section">
+      <div class="section-header">
+        <h2>Tutoriales en Video</h2>
+        <p>Aprende técnicas de producción musical con nuestros tutoriales paso a paso</p>
+      </div>
+      
+      <div class="tutorials-carousel">
+        <div class="tutorials-track" id="tutorialsCarousel">
+          <!-- Tutoriales se cargan dinámicamente -->
+        </div>
+        
+        <button class="tutorial-btn tutorial-prev" id="tutorialsPrev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="tutorial-btn tutorial-next" id="tutorialsNext">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sección de Tendencias -->
+    <section class="trends-section">
+      <div class="section-header">
+        <h2>Tendencias Musicales</h2>
+        <p>Descubre las últimas tendencias y tecnologías en producción musical</p>
+      </div>
+      
+      <div class="trends-grid">
+        <!-- Tendencia 1 -->
+        <div class="trend-card">
+          <div class="trend-icon">
+            <i class="fas fa-microphone-alt"></i>
+          </div>
+          <h3 class="trend-title">Producción con IA</h3>
+          <p class="trend-description">Cómo la inteligencia artificial está revolucionando la creación musical.</p>
+          <div class="trend-stats">
+            <div class="trend-stat">
+              <i class="fas fa-fire"></i>
+              <span>+45%</span>
+            </div>
+            <div class="trend-stat">
+              <i class="fas fa-eye"></i>
+              <span>2.5K</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tendencia 2 -->
+        <div class="trend-card">
+          <div class="trend-icon">
+            <i class="fas fa-headphones"></i>
+          </div>
+          <h3 class="trend-title">Spatial Audio</h3>
+          <p class="trend-description">El audio espacial y su impacto en la experiencia musical inmersiva.</p>
+          <div class="trend-stats">
+            <div class="trend-stat">
+              <i class="fas fa-fire"></i>
+              <span>+32%</span>
+            </div>
+            <div class="trend-stat">
+              <i class="fas fa-eye"></i>
+              <span>1.8K</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tendencia 3 -->
+        <div class="trend-card">
+          <div class="trend-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="trend-title">Producción Móvil</h3>
+          <p class="trend-description">El auge de la creación musical en dispositivos móviles y tablets.</p>
+          <div class="trend-stats">
+            <div class="trend-stat">
+              <i class="fas fa-fire"></i>
+              <span>+67%</span>
+            </div>
+            <div class="trend-stat">
+              <i class="fas fa-eye"></i>
+              <span>3.2K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Acción - REEMPLAZA la sección de Newsletter -->
+    <section class="action-section">
+      <h2>¿Te gusta nuestro contenido?</h2>
+      <p>Únete a nuestra comunidad de productores musicales y lleva tus habilidades al siguiente nivel</p>
+      <div class="action-buttons">
+        <button class="action-btn" id="openSubscriptionPopup2">
+          <i class="fas fa-envelope"></i> Suscribirse a Mixphere
+        </button>
+        <button class="action-btn secondary" id="openCommunityPopup2">
+          <i class="fas fa-paper-plane"></i> Publicar contenido
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Mixfy</h3>
+          <p>La herramienta definitiva para crear música en tu móvil. Diseñada por productores, para productores.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Enlaces</h3>
+          <ul class="footer-links">
+            <li><a href="mixfy.html">Inicio</a></li>
+            <li><a href="mixfy.html#features">Características</a></li>
+            <li><a href="mixfy.html#pricing">Precios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="mixfy.html#contact">Contacto</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul class="footer-links">
+            <li><a href="#">Términos de servicio</a></li>
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">DMCA</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul class="footer-links">
+            <li><a href="#">Documentación</a></li>
+            <li><a href="#">Centro de ayuda</a></li>
+            <li><a href="#">Tutoriales</a></li>
+            <li><a href="#">API para desarrolladores</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Mixfy. Todos los derechos reservados.</p>
+        <p>Creado con ♥ por Sofia Fontan Rey</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Popup de Suscripción -->
+  <div class="popup" id="subscriptionPopup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <button class="popup-close" id="closeSubscriptionPopup">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="popup-title">Suscribirse a Mixphere</h2>
+      </div>
+      <div class="popup-body">
+        <form class="popup-form" id="subscriptionForm">
+          <div class="form-group">
+            <label class="form-label" for="subscriptionEmail">Correo electrónico</label>
+            <input type="email" class="form-input" id="subscriptionEmail" placeholder="tu@correo.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Preferencias de contenido</label>
+            <div class="checkbox-group">
+              <div class="checkbox">
+                <input type="checkbox" id="pref-tutoriales" name="preferences" value="tutoriales" checked>
+                <label for="pref-tutoriales">Tutoriales de producción</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="pref-novedades" name="preferences" value="novedades" checked>
+                <label for="pref-novedades">Novedades de la app</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="pref-entrevistas" name="preferences" value="entrevistas">
+                <label for="pref-entrevistas">Entrevistas a artistas</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="pref-samples" name="preferences" value="samples">
+                <label for="pref-samples">Lanzamientos de samples</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="form-btn primary">Suscribirse</button>
+            <button type="button" class="form-btn secondary" id="enableNotificationsBtn">
+              <i class="fas fa-bell"></i> Notificaciones
+            </button>
+          </div>
+        </form>
+        <div class="popup-message" id="subscriptionMessage"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup de Comunidad -->
+  <div class="popup" id="communityPopup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <button class="popup-close" id="closeCommunityPopup">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="popup-title">Publicar en Mixphere</h2>
+      </div>
+      <div class="popup-body">
+        <form class="popup-form" id="communityForm">
+          <div class="form-group">
+            <label class="form-label" for="communityEmail">Correo electrónico</label>
+            <input type="email" class="form-input" id="communityEmail" placeholder="tu@correo.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="tipo">Tipo de contribución</label>
+            <select class="form-select" id="tipo" name="tipo" required>
+              <option value="articulo">Artículo</option>
+              <option value="video">Video tutorial</option>
+            </select>
+          </div>
+          
+          <div id="sectionArticulo" class="form-section">
+            <div class="form-group">
+              <label class="form-label" for="temaArticulo">Tema</label>
+              <input type="text" class="form-input" id="temaArticulo" placeholder="Tema principal" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="tituloArticulo">Título</label>
+              <input type="text" class="form-input" id="tituloArticulo" placeholder="Título del artículo" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contenidoArticulo">Contenido</label>
+              <textarea class="form-textarea" id="contenidoArticulo" placeholder="Escribe tu artículo" required></textarea>
+            </div>
+          </div>
+          
+          <div id="sectionVideo" class="form-section hidden">
+            <div class="form-group">
+              <label class="form-label" for="temaVideo">Tema</label>
+              <input type="text" class="form-input" id="temaVideo" placeholder="Tema del video">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="tituloVideo">Título</label>
+              <input type="text" class="form-input" id="tituloVideo" placeholder="Título del video">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="descripcionVideo">Descripción</label>
+              <textarea class="form-textarea" id="descripcionVideo" placeholder="Describe el contenido"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="archivoVideo">Archivo de video</label>
+              <input type="file" class="form-input" id="archivoVideo" accept="video/*">
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="confirmGestos">
+              <label for="confirmGestos">Confirmo que el video no incluye gestos ofensivos</label>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="form-btn primary">Enviar a revisión</button>
+            <button type="button" class="form-btn secondary" id="testNotificationBtn">
+              <i class="fas fa-play"></i> Probar Notificación
+            </button>
+          </div>
+        </form>
+        <div class="popup-message" id="communityMessage"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup de artículo -->
+  <div class="article-popup" id="articlePopup">
+    <div class="article-popup-content">
+      <button class="article-popup-close" id="popupClose">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="popup-image">
+        <img src="" alt="" id="popupImage">
+      </div>
+      <div class="article-popup-body">
+        <div class="popup-meta">
+          <div class="popup-category" id="popupCategory"></div>
+          <div class="popup-date" id="popupDate"></div>
+        </div>
+        <h1 class="popup-title" id="popupTitle"></h1>
+        <div class="popup-text" id="popupText"></div>
+        <div class="popup-footer">
+          <div class="article-author">
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Sofia Fontan Rey" class="author-avatar">
+            <div class="author-name">Sofia Fontan Rey</div>
+          </div>
+          <div class="read-time" id="popupReadTime"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script para funcionalidades -->
+  <script>
+    // Datos de los artículos
+    const articlesData = {
+      1: {
+        title: "5 Errores comunes al mezclar tus pistas",
+        category: "Tutoriales",
+        date: "15 MAY 2025",
+        image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        readTime: "8 min",
+        content: `
+          <p>La mezcla de audio es una de las etapas más críticas en la producción musical. Muchos productores novatos cometen errores que pueden arruinar una buena composición. En este artículo, exploraremos los cinco errores más comunes y cómo evitarlos.</p>
+          
+          <p><strong>1. Exceso de compresión</strong><br>
+          Uno de los errores más frecuentes es aplicar demasiada compresión a las pistas. La compresión es una herramienta poderosa, pero cuando se usa en exceso, puede eliminar la dinámica natural de la música y hacer que suene plana y sin vida.</p>
+          
+          <p><strong>2. Ignorar el espacio acústico</strong><br>
+          Cada elemento en tu mezcla necesita su propio espacio en el espectro de frecuencia. Si varios instrumentos compiten por las mismas frecuencias, el resultado será una mezcla confusa y poco definida.</p>
+          
+          <p><strong>3. Mezclar con el volumen demasiado alto</strong><br>
+          Cuando mezclas con niveles de volumen excesivos, tus oídos se fatigan rápidamente y pierdes la capacidad de juzgar objetivamente el balance entre los diferentes elementos.</p>
+          
+          <p><strong>4. No utilizar referencias</strong><br>
+          Es fundamental comparar tu mezcla con producciones profesionales del mismo género. Esto te ayuda a mantener estándares de calidad y a identificar áreas de mejora en tu trabajo.</p>
+          
+          <p><strong>5. Subestimar la importancia de la fase</strong><br>
+          Los problemas de fase entre diferentes micrófonos o pistas pueden causar cancelaciones de frecuencia que debilitan tu mezcla. Siempre verifica la fase al grabar con múltiples micrófonos.</p>
+          
+          <p>Evitar estos errores comunes te ayudará a crear mezclas más profesionales y equilibradas. Recuerda que la mezcla es un proceso que requiere práctica y paciencia.</p>
+        `
+      },
+      2: {
+        title: "Cómo crear un beat atractivo en 10 pasos",
+        category: "Producción",
+        date: "8 MAY 2025",
+        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        readTime: "12 min",
+        content: `
+          <p>Crear un beat atractivo es fundamental para cualquier producción musical moderna. Ya sea que estés produciendo hip-hop, pop o electrónica, estos 10 pasos te guiarán en el proceso de creation.</p>
+          
+          <p><strong>Paso 1: Define el tempo y el estilo</strong><br>
+          Antes de empezar, decide el tempo (BPM) y el género musical. Esto te ayudará a mantener la coherencia a lo largo de todo el proceso creativo.</p>
+          
+          <p><strong>Paso 2: Crea el patrón de bombo</strong><br>
+          El bombo es la base rítmica. Coloca los golpes en los tiempos fuertes (generalmente el 1 y el 3 en compás de 4/4) y experimenta con variaciones sutiles.</p>
+          
+          <p><strong>Paso 3: Añade la caja</strong><br>
+          La caja proporciona el groove. En la mayoría de los géneros modernos, se coloca en los tiempos 2 y 4. Puedes añadir ghost notes (notas fantasmas) para dar más textura.</p>
+          
+          <p><strong>Paso 4: Incorpora los hi-hats</strong><br>
+          Los hi-hats definen el movimiento rítmico. Comienza con un patrón simple de corcheas y luego añade variaciones, acentos y patrones más complejos.</p>
+          
+          <p><strong>Paso 5: Diseña el bajo</strong><br>
+          El bajo conecta la percusión con la armonía. Crea una línea de bajo que complemente el patrón rítmico y establezca la base armónica.</p>
+          
+          <p><strong>Paso 6: Añade elementos melódicos</strong><br>
+          Incorpora pads, leads o samples que establezcan la atmósfera y la identidad musical de tu beat.</p>
+          
+          <p><strong>Paso 7: Crea variaciones</strong><br>
+          Introduce cambios en cada sección (intro, verso, estribillo, puente) para mantener el interés del oyente.</p>
+          
+          <p><strong>Paso 8: Añade efectos y transiciones</strong><br>
+          Utiliza risers, impacts, sweeps y otros efectos para marcar cambios entre secciones y añadir energía.</p>
+          
+          <p><strong>Paso 9: Estructura tu beat</strong><br>
+          Organiza las diferentes secciones en una estructura coherente (intro-verso-estribillo-verso-estribillo-puente-estribillo-outro).</p>
+          
+          <p><strong>Paso 10: Mezcla y masterización</strong><br>
+          Ajusta los niveles, aplica ecualización, compresión y efectos para pulir tu beat y prepararlo para su distribución.</p>
+          
+          <p>Siguiendo estos 10 pasos, podrás crear beats atractivos y profesionales que capten la atención de tus oyentes.</p>
+        `
+      },
+      3: {
+        title: "Los mejores plugins gratuitos para Mixfy",
+        category: "Mezcla",
+        date: "1 MAY 2025",
+        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        readTime: "6 min",
+        content: `
+          <p>No necesitas gastar una fortuna en plugins para crear producciones de calidad. Existen numerosas opciones gratuitas que pueden potenciar tus mezclas sin afectar tu presupuesto.</p>
+          
+          <p><strong>1. EQ - TDR Nova</strong><br>
+          Un ecualizador dinámico gratuito que ofrece un control preciso sobre las frecuencias. Perfecto para esculpir el sonido de tus pistas y eliminar frecuencias problemáticas.</p>
+          
+          <p><strong>2. Compresor - DC1A</strong><br>
+          Un compresor de emulación analógica que añade calidez y carácter a tus pistas. Ideal para voces, bajos y elementos rítmicos.</p>
+          
+          <p><strong>3. Reverb - OrilRiver</strong><br>
+          Una reverberación algorítmica de alta calidad que ofrece desde ambientes pequeños hasta espacios cavernosos. Perfecta para dar profundidad a tus mezclas.</p>
+          
+          <p><strong>4. Delay - TAL-Reverb-4</strong><br>
+          Aunque se llama reverb, este plugin incluye excelentes delays modulados que añaden movimiento y espacio a tus sonidos.</p>
+          
+          <p><strong>5. Sintetizador - Vital</strong><br>
+          Un sintetizador wavetable gratuito extremadamente potente. Ofrece capacidades similares a Serum pero sin el costo.</p>
+          
+          <p><strong>6. Analizador - SPAN</strong><br>
+          Un analizador de espectro gratuito que te ayuda a visualizar el contenido frecuencial de tus mezclas y identificar problemas de balance.</p>
+          
+          <p><strong>7. Limitador - LoudMax</strong><br>
+          Un limitador transparente que te permite aumentar el volumen sin introducir distorsión. Ideal para la etapa final de mastering.</p>
+          
+          <p>Estos plugins gratuitos, combinados con tu creatividad y habilidades, te permitirán crear producciones profesionales sin invertir en costosas herramientas.</p>
+        `
+      },
+      4: {
+        title: "Técnicas de masterización profesional",
+        category: "Mastering",
+        date: "24 ABR 2025",
+        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        readTime: "10 min",
+        content: `
+          <p>La masterización es el toque final que convierte una buena mezcla en una producción lista para el mundo. Estas técnicas profesionales te ayudarán a lograr resultados de estudio.</p>
+          
+          <p><strong>1. Comienza con una buena mezcla</strong><br>
+          La masterización no puede arreglar una mala mezcla. Asegúrate de que tu mezcla esté equilibrada antes de comenzar el proceso de masterización.</p>
+          
+          <p><strong>2. Utiliza ecualización sutil</strong><br>
+          Aplica ajustes de EQ mínimos (generalmente menos de 2-3 dB) para corregir problemas de frecuencia y realzar las cualidades de la mezcla.</p>
+          
+          <p><strong>3. Controla la dinámica con compresión</strong><br>
+          Usa compresión multibanda para controlar diferentes rangos de frecuencia por separado. Esto te permite comprimir los graves sin afectar los agudos.</p>
+          
+          <p><strong>4. Añade estereo width</strong><br>
+          Utiliza herramientas de estéreo para ensanchar el campo sonoro, pero ten cuidado de not exagerar para evitar problemas de fase.</p>
+          
+          <p><strong>5. Aplica limitación cuidadosamente</strong><br>
+          El limitador es tu última línea de defensa. Ajusta el ceiling a -1 dB para evitar clipping y usa gain reduction moderada (2-4 dB).</p>
+          
+          <p><strong>6. Monitorea en diferentes sistemas</strong><br>
+          Escucha tu masterización en auriculares, monitores de estudio, altavoces de computadora y en el coche para asegurarte de que suena bien en todos los sistemas.</p>
+          
+          <p><strong>7. Toma descansos auditivos</strong><br>
+          Tu oído se fatiga rápidamente. Toma descansos regulares durante el proceso de masterización para mantener la objetividad.</p>
+          
+          <p><strong>8. Utiliza referencias</strong><br>
+          Compara tu masterización con producciones comerciales del mismo género para asegurarte de que cumple con los estándares de la industria.</p>
+          
+          <p>Dominar estas técnicas de masterización te permitirá entregar producciones que compitan con los mejores releases del mercado.</p>
+        `
+      }
+    };
+
+    // Datos de los tutoriales - CON IMÁGENES ÚNICAS
+    const tutorialsData = [
+      {
+        title: "Introducción a la mezcla de audio",
+        level: "Principiante",
+        duration: "15 min",
+        image: "https://images.unsplash.com/photo-1571974599782-87624638275f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
+      },
+      {
+        title: "Creación de ritmos complejos",
+        level: "Intermedio",
+        duration: "22 min",
+        image: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+      },
+      {
+        title: "Masterización profesional",
+        level: "Avanzado",
+        duration: "30 min",
+        image: "https://images.unsplash.com/photo-1614680376593-902f74c0fb5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      },
+      {
+        title: "Síntesis de sonidos desde cero",
+        level: "Intermedio",
+        duration: "25 min",
+        image: "https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Menú móvil
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const navLinks = document.getElementById('navLinks');
+      
+      mobileMenuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        this.innerHTML = navLinks.classList.contains('active') ? 
+          '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      });
+      
+      // Cerrar menú al hacer clic en un enlace
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.classList.remove('active');
+          mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+      });
+      
+      // Cambiar navbar al hacer scroll
+      const navbar = document.getElementById('navbar');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // Cargar artículos dinámicamente
+      const articlesCarousel = document.getElementById('articlesCarousel');
+      Object.keys(articlesData).forEach(articleId => {
+        const article = articlesData[articleId];
+        const articleElement = document.createElement('div');
+        articleElement.className = 'carousel-item';
+        articleElement.innerHTML = `
+          <article class="blog-article" data-article="${articleId}">
+            <div class="article-image">
+              <img src="${article.image}" alt="${article.title}">
+              <div class="article-category">${article.category}</div>
+            </div>
+            <div class="article-content">
+              <div class="article-date"><i class="far fa-calendar"></i> ${article.date}</div>
+              <h3 class="article-title">${article.title}</h3>
+              <p class="article-excerpt">${article.content.substring(0, 120)}...</p>
+              <div class="article-meta">
+                <div class="article-author">
+                  <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Sofia Fontan Rey" class="author-avatar">
+                  <div class="author-name">Sofia Fontan Rey</div>
+                </div>
+                <div class="read-time"><i class="far fa-clock"></i> ${article.readTime}</div>
+              </div>
+            </div>
+          </article>
+        `;
+        articlesCarousel.appendChild(articleElement);
+      });
+
+      // Cargar tutoriales dinámicamente
+      const tutorialsCarousel = document.getElementById('tutorialsCarousel');
+      tutorialsData.forEach((tutorial, index) => {
+        const tutorialElement = document.createElement('div');
+        tutorialElement.className = 'tutorial-item';
+        tutorialElement.innerHTML = `
+          <div class="tutorial-card">
+            <div class="tutorial-video">
+              <img src="${tutorial.image}" alt="${tutorial.title}">
+              <div class="play-icon">
+                <i class="fas fa-play"></i>
+              </div>
+            </div>
+            <div class="tutorial-content">
+              <span class="tutorial-level">${tutorial.level}</span>
+              <h3 class="tutorial-title">${tutorial.title}</h3>
+              <div class="tutorial-duration">
+                <i class="far fa-clock"></i>
+                <span>${tutorial.duration}</span>
+              </div>
+            </div>
+          </div>
+        `;
+        tutorialsCarousel.appendChild(tutorialElement);
+      });
+
+      // Carrusel de artículos
+      const articlesPrev = document.getElementById('articlesPrev');
+      const articlesNext = document.getElementById('articlesNext');
+      let articlesPosition = 0;
+      
+      articlesNext.addEventListener('click', function() {
+        const itemWidth = document.querySelector('.carousel-item').offsetWidth + 24;
+        const maxPosition = articlesCarousel.scrollWidth - articlesCarousel.offsetWidth;
+        
+        if (articlesPosition < maxPosition) {
+          articlesPosition += itemWidth;
+          articlesCarousel.style.transform = `translateX(-${articlesPosition}px)`;
+        }
+      });
+      
+      articlesPrev.addEventListener('click', function() {
+        const itemWidth = document.querySelector('.carousel-item').offsetWidth + 24;
+        
+        if (articlesPosition > 0) {
+          articlesPosition -= itemWidth;
+          articlesCarousel.style.transform = `translateX(-${articlesPosition}px)`;
+        }
+      });
+
+      // Carrusel de tutoriales
+      const tutorialsPrev = document.getElementById('tutorialsPrev');
+      const tutorialsNext = document.getElementById('tutorialsNext');
+      let tutorialsPosition = 0;
+      
+      tutorialsNext.addEventListener('click', function() {
+        const itemWidth = document.querySelector('.tutorial-item').offsetWidth + 24;
+        const maxPosition = tutorialsCarousel.scrollWidth - tutorialsCarousel.offsetWidth;
+        
+        if (tutorialsPosition < maxPosition) {
+          tutorialsPosition += itemWidth;
+          tutorialsCarousel.style.transform = `translateX(-${tutorialsPosition}px)`;
+        }
+      });
+      
+      tutorialsPrev.addEventListener('click', function() {
+        const itemWidth = document.querySelector('.tutorial-item').offsetWidth + 24;
+        
+        if (tutorialsPosition > 0) {
+          tutorialsPosition -= itemWidth;
+          tutorialsCarousel.style.transform = `translateX(-${tutorialsPosition}px)`;
+        }
+      });
+
+      // Popup de artículos
+      const articlePopup = document.getElementById('articlePopup');
+      const popupClose = document.getElementById('popupClose');
+      
+      document.addEventListener('click', function(e) {
+        if (e.target.closest('.blog-article')) {
+          const articleId = e.target.closest('.blog-article').getAttribute('data-article');
+          const articleData = articlesData[articleId];
+          
+          if (articleData) {
+            document.getElementById('popupImage').src = articleData.image;
+            document.getElementById('popupCategory').textContent = articleData.category;
+            document.getElementById('popupDate').textContent = articleData.date;
+            document.getElementById('popupTitle').textContent = articleData.title;
+            document.getElementById('popupText').innerHTML = articleData.content;
+            document.getElementById('popupReadTime').innerHTML = `<i class="far fa-clock"></i> ${articleData.readTime}`;
+            
+            articlePopup.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+          }
+        }
+      });
+      
+      popupClose.addEventListener('click', function() {
+        articlePopup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+      
+      articlePopup.addEventListener('click', function(e) {
+        if (e.target === articlePopup) {
+          articlePopup.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+
+      // Funcionalidad para los popups de Suscripción y Comunidad
+      // Elementos de los popups
+      const subscriptionPopup = document.getElementById('subscriptionPopup');
+      const communityPopup = document.getElementById('communityPopup');
+      
+      // Botones para abrir popups
+      const openSubscriptionButtons = [
+        document.getElementById('openSubscriptionPopup'),
+        document.getElementById('openSubscriptionPopup2')
+      ];
+      
+      const openCommunityButtons = [
+        document.getElementById('openCommunityPopup'),
+        document.getElementById('openCommunityPopup2')
+      ];
+      
+      // Botones para cerrar popups
+      const closeSubscriptionPopup = document.getElementById('closeSubscriptionPopup');
+      const closeCommunityPopup = document.getElementById('closeCommunityPopup');
+      
+      // Funciones para abrir popups
+      openSubscriptionButtons.forEach(btn => {
+        if (btn) {
+          btn.addEventListener('click', function() {
+            subscriptionPopup.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+          });
+        }
+      });
+      
+      openCommunityButtons.forEach(btn => {
+        if (btn) {
+          btn.addEventListener('click', function() {
+            communityPopup.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+          });
+        }
+      });
+      
+      // Funciones para cerrar popups
+      closeSubscriptionPopup.addEventListener('click', function() {
+        subscriptionPopup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+      
+      closeCommunityPopup.addEventListener('click', function() {
+        communityPopup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+      
+      // Cerrar popups al hacer clic fuera del contenido
+      subscriptionPopup.addEventListener('click', function(e) {
+        if (e.target === subscriptionPopup) {
+          subscriptionPopup.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+      
+      communityPopup.addEventListener('click', function(e) {
+        if (e.target === communityPopup) {
+          communityPopup.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+      
+      // Mostrar/ocultar secciones del formulario de comunidad según el tipo
+      const tipoSelect = document.getElementById('tipo');
+      const sectionArticulo = document.getElementById('sectionArticulo');
+      const sectionVideo = document.getElementById('sectionVideo');
+      
+      if (tipoSelect && sectionArticulo && sectionVideo) {
+        tipoSelect.addEventListener('change', function() {
+          if (this.value === 'articulo') {
+            sectionArticulo.classList.remove('hidden');
+            sectionVideo.classList.add('hidden');
+          } else {
+            sectionArticulo.classList.add('hidden');
+            sectionVideo.classList.remove('hidden');
+          }
+        });
+      }
+      
+      // Manejar envío del formulario de suscripción
+      const subscriptionForm = document.getElementById('subscriptionForm');
+      const subscriptionMessage = document.getElementById('subscriptionMessage');
+      
+      if (subscriptionForm) {
+        subscriptionForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const email = document.getElementById('subscriptionEmail').value.trim();
+          
+          if (!email) {
+            showPopupMessage(subscriptionMessage, 'Por favor, introduce tu correo electrónico', 'error');
+            return;
+          }
+          
+          if (!isValidEmail(email)) {
+            showPopupMessage(subscriptionMessage, 'Por favor, introduce un correo electrónico válido', 'error');
+            return;
+          }
+          
+          // Simular envío exitoso
+          showPopupMessage(subscriptionMessage, '¡Te has suscrito exitosamente! Recibirás nuestras actualizaciones pronto.', 'success');
+          subscriptionForm.reset();
+          
+          // Cerrar popup después de 2 segundos
+          setTimeout(() => {
+            subscriptionPopup.style.display = 'none';
+            document.body.style.overflow = 'auto';
+          }, 2000);
+        });
+      }
+      
+      // Manejar envío del formulario de comunidad
+      const communityForm = document.getElementById('communityForm');
+      const communityMessage = document.getElementById('communityMessage');
+      
+      if (communityForm) {
+        communityForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const email = document.getElementById('communityEmail').value.trim();
+          const tipo = document.getElementById('tipo').value;
+          
+          if (!email) {
+            showPopupMessage(communityMessage, 'Por favor, introduce tu correo electrónico', 'error');
+            return;
+          }
+          
+          if (!isValidEmail(email)) {
+            showPopupMessage(communityMessage, 'Por favor, introduce un correo electrónico válido', 'error');
+            return;
+          }
+          
+          // Validaciones específicas según el tipo
+          if (tipo === 'articulo') {
+            const tema = document.getElementById('temaArticulo').value.trim();
+            const titulo = document.getElementById('tituloArticulo').value.trim();
+            const contenido = document.getElementById('contenidoArticulo').value.trim();
+            
+            if (!tema || !titulo || !contenido) {
+              showPopupMessage(communityMessage, 'Por favor, completa todos los campos del artículo', 'error');
+              return;
+            }
+          } else {
+            const confirmGestos = document.getElementById('confirmGestos').checked;
+            if (!confirmGestos) {
+              showPopupMessage(communityMessage, 'Debes confirmar que no hay gestos ofensivos', 'error');
+              return;
+            }
+          }
+          
+          // Simular envío exitoso
+          showPopupMessage(communityMessage, '¡Tu contribución ha sido enviada para revisión! Te contactaremos pronto.', 'success');
+          communityForm.reset();
+          
+          // Cerrar popup después de 2 segundos
+          setTimeout(() => {
+            communityPopup.style.display = 'none';
+            document.body.style.overflow = 'auto';
+          }, 2000);
+        });
+      }
+      
+      // Funciones de utilidad
+      function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+      
+      function showPopupMessage(element, message, type) {
+        element.textContent = message;
+        element.className = 'popup-message';
+        element.classList.add(type);
+        element.style.display = 'block';
+        
+        setTimeout(() => {
+          element.style.display = 'none';
+        }, 5000);
+      }
+      
+      // Funcionalidad de notificaciones
+      const enableNotificationsBtn = document.getElementById('enableNotificationsBtn');
+      const testNotificationBtn = document.getElementById('testNotificationBtn');
+      
+      if (enableNotificationsBtn) {
+        enableNotificationsBtn.addEventListener('click', async function() {
+          if ('Notification' in window) {
+            if (Notification.permission === 'default') {
+              const permission = await Notification.requestPermission();
+              if (permission === 'granted') {
+                showPopupMessage(subscriptionMessage, 'Notificaciones activadas correctamente', 'success');
+              } else {
+                showPopupMessage(subscriptionMessage, 'Las notificaciones han sido bloqueadas', 'error');
+              }
+            } else if (Notification.permission === 'granted') {
+              showPopupMessage(subscriptionMessage, 'Las notificaciones ya están activadas', 'success');
+            } else {
+              showPopupMessage(subscriptionMessage, 'Las notificaciones están bloqueadas. Por favor, habilítalas en la configuración de tu navegador.', 'error');
+            }
+          } else {
+            showPopupMessage(subscriptionMessage, 'Tu navegador no soporta notificaciones push', 'error');
+          }
+        });
+      }
+      
+      if (testNotificationBtn) {
+        testNotificationBtn.addEventListener('click', function() {
+          if ('Notification' in window && Notification.permission === 'granted') {
+            new Notification('Mixfy Blog', {
+              body: '¡Esta es una notificación de prueba! Gracias por contribuir a nuestra comunidad.',
+              icon: '/favicon.ico'
+            });
+            showPopupMessage(communityMessage, 'Notificación de prueba enviada', 'success');
+          } else {
+            showPopupMessage(communityMessage, 'Primero debes activar las notificaciones', 'error');
+          }
+        });
+      }
+
+      // Smooth scrolling para enlaces internos
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
