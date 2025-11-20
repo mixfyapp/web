@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida Mixfy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a0f2e 0%, #2d1b42 50%, #1a0f2e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            cursor: none;
+        }
+        
+        /* Efectos de partículas sutiles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(106, 64, 127, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Ondas que ocupan toda la parte inferior */
+        .sound-visualizer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100px;
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .wave-1 {
+            animation: wave-move 12s infinite linear;
+            background: linear-gradient(transparent, rgba(106, 64, 127, 0.25));
+            height: 90px;
+        }
+        
+        .wave-2 {
+            animation: wave-move 8s infinite linear reverse;
+            background: linear-gradient(transparent, rgba(138, 90, 160, 0.2));
+            height: 70px;
+            bottom: 5px;
+        }
+        
+        .wave-3 {
+            animation: wave-move 15s infinite linear;
+            background: linear-gradient(transparent, rgba(170, 120, 200, 0.15));
+            height: 50px;
+            bottom: 10px;
+        }
+        
+        @keyframes wave-move {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* Pulsos rítmicos */
+        .rhythm-pulses {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 2;
+        }
+        
+        .pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #8a5aa0;
+            animation: pulse-glow 2s infinite ease-in-out;
+            box-shadow: 0 0 8px #6a407f;
+        }
+        
+        .pulse:nth-child(2) { animation-delay: 0.2s; background: #aa78c8; }
+        .pulse:nth-child(3) { animation-delay: 0.4s; background: #8a5aa0; }
+        .pulse:nth-child(4) { animation-delay: 0.6s; background: #6a407f; }
+        .pulse:nth-child(5) { animation-delay: 0.8s; background: #aa78c8; }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(2);
+                opacity: 1;
+            }
+        }
+        
+        .container {
+            text-align: center;
+            z-index: 3;
+            padding: 2rem;
+            max-width: 800px;
+            margin-bottom: 80px; /* Espacio para las ondas */
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 1;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(106, 64, 127, 0.5);
+        }
+        
+        .welcome-text {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 1;
+            color: #e0e0e0;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .main-title {
+            font-size: 6rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            padding: 0 20px;
+            opacity: 1;
+            text-shadow: 
+                0 0 20px rgba(106, 64, 127, 0.8),
+                0 0 40px rgba(106, 64, 127, 0.4);
+            transition: all 0.5s ease;
+        }
+        
+        .main-title::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                #6a407f, 
+                #8a5aa0, 
+                #6a407f, 
+                transparent);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+        
+        .main-title:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .main-title:hover {
+            transform: scale(1.05);
+            text-shadow: 
+                0 0 30px rgba(106, 64, 127, 1),
+                0 0 60px rgba(106, 64, 127, 0.6);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 1;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .music-player {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+        }
+        
+        .music-player i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #8a5aa0;
+        }
+        
+        .music-player p {
+            font-size: 1rem;
+            color: #e0e0e0;
+            font-weight: 300;
+        }
+        
+        .equalizer {
+            display: flex;
+            align-items: flex-end;
+            height: 30px;
+            margin-left: 15px;
+        }
+        
+        .bar {
+            width: 3px;
+            margin: 0 1.5px;
+            border-radius: 1.5px;
+            background: linear-gradient(to top, #6a407f, #8a5aa0);
+            animation: equalize 1.5s infinite ease-in-out;
+        }
+        
+        .bar:nth-child(1) { animation-delay: 0s; height: 8px; }
+        .bar:nth-child(2) { animation-delay: 0.1s; height: 16px; }
+        .bar:nth-child(3) { animation-delay: 0.2s; height: 12px; }
+        .bar:nth-child(4) { animation-delay: 0.3s; height: 20px; }
+        .bar:nth-child(5) { animation-delay: 0.4s; height: 8px; }
+        
+        @keyframes equalize {
+            0%, 100% {
+                transform: scaleY(0.3);
+            }
+            50% {
+                transform: scaleY(1.2);
+            }
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 3rem;
+            opacity: 1;
+            position: relative;
+            z-index: 4;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a.instagram::before { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-icons a.tiktok::before { background: linear-gradient(45deg, #000000, #25f4ee, #fe2c55); }
+        .social-icons a.youtube::before { background: linear-gradient(45deg, #ff0000, #ff4747); }
+        .social-icons a.linkedin::before { background: linear-gradient(45deg, #0077b5, #00a0dc); }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 64, 127, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .social-icons a:hover::before {
+            opacity: 0.3;
+        }
+        
+        /* Efecto de clic en el título */
+        .click-effect {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(106, 64, 127, 0.6);
+            pointer-events: none;
+            animation: ripple 0.8s linear;
+            z-index: 10;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(35);
+                opacity: 0;
+            }
+        }
+        
+        /* Partículas que siguen al cursor */
+        .cursor-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(138, 90, 160, 0.8);
+            pointer-events: none;
+            animation: particle-trail 1.2s ease-out forwards;
+            z-index: 1000;
+        }
+        
+        @keyframes particle-trail {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        /* Cursor personalizado */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(138, 90, 160, 0.5);
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 4rem;
+            }
+            
+            .welcome-text {
+                font-size: 1.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .sound-visualizer {
+                height: 100px;
+            }
+            
+            body {
+                cursor: auto;
+            }
+            
+            .custom-cursor {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="sound-visualizer">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+        <div class="rhythm-pulses">
+            <div class="pulse"></div>
+            <div class="pulse"></div>
+            <div class="pulse"></div>
+            <div class="pulse"></div>
+            <div class="pulse"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-wave-square"></i>
+        </div>
+        <h1 class="welcome-text">Bienvenido a</h1>
+        
+        <h1 class="main-title" id="main-title">
+            MIXFY
+        </h1>
+        
+        <p class="subtitle">Sumérgete en una experiencia sonora única donde la música cobra vida. Descubre ritmos que transforman momentos.</p>
+        
+        <div class="music-player">
+            <i class="fas fa-play-circle"></i>
+            <p>Tu viaje musical está a punto de comenzar</p>
+            <div class="equalizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+        
+        <div class="social-icons">
+            <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="tiktok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <div class="custom-cursor" id="customCursor"></div>
+
+    <script>
+        // Crear partículas sutiles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamaño pequeño
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posición inicial aleatoria
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Duración de animación aleatoria
+                particle.style.animationDuration = `${Math.random() * 15 + 15}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Efecto de partículas que siguen al cursor
+        function createCursorParticles(x, y) {
+            const particleCount = 3;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('cursor-particle');
+                
+                // Posición inicial
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                // Dirección aleatoria
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 12 + Math.random() * 20;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                
+                // Tamaño aleatorio
+                const size = 3 + Math.random() * 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                document.body.appendChild(particle);
+                
+                // Eliminar partícula después de la animación
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, 1200);
+            }
+        }
+        
+        // Cursor personalizado
+        function initCustomCursor() {
+            const cursor = document.getElementById('customCursor');
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                // Crear partículas al mover el mouse
+                createCursorParticles(e.clientX, e.clientY);
+            });
+            
+            function updateCursor() {
+                // Suavizar el movimiento del cursor
+                cursorX += (mouseX - cursorX) * 0.1;
+                cursorY += (mouseY - cursorY) * 0.1;
+                
+                cursor.style.left = `${cursorX - 10}px`;
+                cursor.style.top = `${cursorY - 10}px`;
+                
+                requestAnimationFrame(updateCursor);
+            }
+            
+            updateCursor();
+        }
+        
+        // Efecto de clic en el título
+        document.getElementById('main-title').addEventListener('click', function(e) {
+            // Crear efecto de onda
+            const clickEffect = document.createElement('div');
+            clickEffect.classList.add('click-effect');
+            clickEffect.style.left = `${e.clientX - 10}px`;
+            clickEffect.style.top = `${e.clientY - 10}px`;
+            document.body.appendChild(clickEffect);
+            
+            // Eliminar el efecto después de la animación
+            setTimeout(() => {
+                clickEffect.remove();
+            }, 800);
+            
+            // Redirigir después de un breve retraso para ver la animación
+            setTimeout(() => {
+                window.location.href = 'mixfy.html';
+            }, 1000);
+        });
+        
+        // Inicializar elementos cuando se carga la página
+        window.addEventListener('load', function() {
+            createParticles();
+            initCustomCursor();
+        });
+    </script>
+</body>
+</html>
